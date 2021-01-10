@@ -1,7 +1,11 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>Baseball log</h1>
-    <p>このアプリは、あなたの試合観戦を記録し、<br>他のファンと喜びを共有できるアプリです。</p>
-    <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-lg btn-primary' %>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Baseball log</h1>
+      <p>このアプリは、あなたの試合観戦を記録し、<br>他のファンと喜びを共有できるアプリです。</p>
+      <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
   </div>
-</div>
+<% end %>
