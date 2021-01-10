@@ -10,6 +10,7 @@
     </div>
     <p>お気に入りチーム:<br> 中日ドラゴンズ</p>
     <p>ひとことプロフィール：<br><%= @user.introduce %></p>
+    <%= link_to "編集する", edit_user_path(@user), class: 'btn btn-danger btn-sm' %>
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
