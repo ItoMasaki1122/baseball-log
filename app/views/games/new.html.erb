@@ -1,0 +1,47 @@
+<div class="text-center">
+  <h1>試合登録</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @game, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :date, '日付' %>
+        <%= f.text_field :date, class: 'form-control' %>
+      </div>
+      
+  
+      
+      <div class="form-group">
+        <%= f.label :place, '球場' %>
+        <%= f.text_field :place, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :enemy, '対戦相手' %>
+        <%= f.text_field :enemy, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :result, '結果' %>
+        <%= f.text_field :result, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :topic, '一言メモ' %>
+        <%= f.text_field :topic, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :content, '感想' %>
+        <%= f.text_area :content, class: 'form-control', rows: 5 %>
+      </div>
+      
+
+      <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # @game = Game.find(params[:id])
+    @games = @user.games.order(id: :desc).page(params[:page])
   end
 
   def new

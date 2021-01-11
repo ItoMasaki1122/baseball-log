@@ -1,0 +1,19 @@
+<ul class="list-unstyled">
+  <% games.each do |game| %>
+    <li class="media mb-3">
+      <div class="media-body">
+        <div>
+          <%= link_to game.user.name, user_path(game.user) %> <span class="text-muted">posted at <%= game.created_at %></span>
+        </div>
+        <div>
+          <p><%= game.date %> vs<%= game.enemy %> <%= game.result %><br><%= game.topic %></p>
+        </div>
+        <%= link_to "詳細", game, class: 'btn btn-secondary btn-sm' %>
+        <% if current_user == game.user %>
+            <%= link_to "削除", game, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate games %>
+</ul>
