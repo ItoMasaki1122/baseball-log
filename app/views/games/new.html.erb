@@ -22,12 +22,15 @@
       
       <div class="form-group">
         <%= f.label :enemy, '対戦相手' %>
-        <%= f.text_field :enemy, class: 'form-control' %>
+        <%= f.collection_select :enemy, Team.all, :name, :name, {} ,{:class => "form-control"} %>
       </div>
 
+
       <div class="form-group">
-        <%= f.label :result, '結果' %>
-        <%= f.text_field :result, class: 'form-control' %>
+        <%= f.label :enemy, '結果' %>
+        <label><%= f.radio_button :result, "勝ち" %> 勝ち </label>
+        <label><%= f.radio_button :result, "負け" %> 負け</label>
+        <label><%= f.radio_button :result, "引き分け" %> 引き分け </label>
       </div>
 
       <div class="form-group">

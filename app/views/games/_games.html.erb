@@ -9,7 +9,7 @@
           <p><%= game.date %> vs<%= game.enemy %> <%= game.result %><br><%= game.topic %></p>
         </div>
         <%= link_to "詳細", game, class: 'btn btn-secondary btn-sm' %>
-        <% if current_user == game.user %>
+          <% if current_user == game.user %>
             <%= link_to "削除", game, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
           <% end %>
       </div>

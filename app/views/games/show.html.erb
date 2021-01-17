@@ -11,6 +11,6 @@
 　    <p>結果：<%= @game.result %></p>
 　    <p>一言メモ：<%= @game.topic %></p>
 　    <p>感想：<%= @game.content %></p>
-　    <%= link_to "戻る",current_user , class: 'btn btn-secondary' %>
+　    <%= link_to "戻る", user_path(@user) , class: 'btn btn-secondary' %>
   </div>
 </div>

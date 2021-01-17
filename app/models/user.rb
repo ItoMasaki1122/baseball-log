@@ -8,4 +8,19 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :games
+  
+  has_many :favorites
+  has_many :likes, through: :favorites, source: :team
+  
+  def favorite(one_team)
+    self.favorites.find_or_create_by(team_id: one_team.id)
+  end
+  
+  def unfavorite(one_team)
+    self.favorites.update(team_id: one_team.id)
+  end
+  
+  def like?(one_team)
+    self.likes.include?(one_team)
+  end
 end

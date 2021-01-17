@@ -8,13 +8,18 @@
         <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
-    <p>お気に入りチーム:<br> 中日ドラゴンズ</p>
+    <p>お気に入りチーム:<br><%= @like.name %></p>
     <p>ひとことプロフィール：<br><%= @user.introduce %></p>
-    <%= link_to "編集する", edit_user_path(@user), class: 'btn btn-secondary btn-sm' %>
+      <% if current_user == @user %>
+        <%= link_to "編集する", edit_user_path(@user), class: 'btn btn-secondary btn-sm' %>
+      <% end %>
+    
   </aside>
   <div class="col-sm-8">
-    <h2><%= @user.name %>さんの観戦成績<br>◯勝◯敗◯分　勝率：ーーー</h2>
-    <%= link_to '新規試合登録', new_game_path, class: 'btn btn-md btn-primary' %>
+    <h2><%= @user.name %>さんの観戦成績<br><%= @win_games %>勝<%= @lose_games %>敗<%= @draw_games %>分　勝率：<%= @win_rate %></h2>
+    <% if current_user == @user %>
+      <%= link_to '新規試合登録', new_game_path, class: 'btn btn-md btn-primary' %>
+    <% end %>
     <%= render 'games/games', games: @games %>
   </div>
 </div>
