@@ -30,16 +30,15 @@ class UsersController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       @user = User.new(user_params)
-      if @user.save
-        flash[:success] = 'ユーザを登録しました。'
-          team = Team.find(params[:favorite][:team_id])
-          @user.favorite(team)
-        redirect_to @user
-      else
-        flash.now[:danger] = 'ユーザの登録に失敗しました。'
-        render :new
-      end
+      @user.save
+      flash[:success] = 'ユーザを登録しました。'
+      team = Team.find(params[:favorite][:team_id])
+      @user.favorite(team)
+      redirect_to @user
     end
+    rescue
+      flash.now[:danger] = 'ユーザの登録に失敗しました。'
+      render :new
   end
 
   def edit
@@ -47,18 +46,17 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     ActiveRecord::Base.transaction do
-      if @user.update(user_params)
+        @user = User.find(params[:id])
+        @user.update!(user_params)
         flash[:success] = 'ユーザー情報は正常に更新されました'
-          team = Team.find(params[:favorite][:team_id])
-          @user.unfavorite(team)
+        team = Team.find(params[:favorite][:team_id])
+        @user.favchange(team)
         redirect_to @user
-      else
+      end
+      rescue
         flash.now[:danger] = 'ユーザー情報は更新されませんでした'
         render :edit
-      end
-    end
   end
   
   def search

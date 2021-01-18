@@ -9,7 +9,7 @@
         <img class="mr-2 rounded" src="<%= gravatar_url(user, { size: 80 }) %>" alt="">
         <div class="media-body">
           <div>
-            <%= user.name %> お気に入りチーム：
+            <%= user.name %> お気に入りチーム：<%= user.likes.first.name %>
           </div>
           <div>
             <%= user.introduce %>

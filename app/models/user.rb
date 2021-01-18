@@ -13,11 +13,13 @@ class User < ApplicationRecord
   has_many :likes, through: :favorites, source: :team
   
   def favorite(one_team)
-    self.favorites.find_or_create_by(team_id: one_team.id)
+    self.favorites.find_or_create_by!(team_id: one_team.id)
   end
   
-  def unfavorite(one_team)
-    self.favorites.update(team_id: one_team.id)
+  def favchange(one_team)
+    self.favorites.each do |fav|
+      fav.update!(team_id: one_team.id)
+    end
   end
   
   def like?(one_team)

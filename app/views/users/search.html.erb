@@ -2,9 +2,9 @@
   <%= form_with url: search_users_path, method: :get, local: true do |f| %>
    <div class = "row" >
     <div class="form-inline form-group col-sm-6">
-        お気に入りチーム
-      <%= f.collection_select :team_id, Team.all, :id, :name, {} ,{:class => "form-control"} %>のユーザー
-      <%= f.submit :検索 ,:class => 'btn btn-primary' %>
+      <%= f.label :team_id, 'お気に入りチーム' , :class => "col-form-label" %>
+      <%= f.collection_select :team_id, Team.all, :id, :name, {} ,{:class => "form-control"} %>
+      <%= f.submit :ユーザー検索 ,:class => 'btn btn-primary m-1' %>
     </div>
   </div>
   <% end %>
