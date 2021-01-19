@@ -15,6 +15,8 @@ def pretend_future
     errors[:base] <<  "don't input a future date."  if date > Date.today
   end
 end
+
+
   
   
 end

@@ -13,12 +13,17 @@ class GamesController < ApplicationController
 
   def create
     @game = current_user.games.build(game_params)
-
-    if @game.save
-      flash[:success] = '試合を登録しました。'
-      redirect_to @game
+    @like = current_user.likes.first
+    if @game.enemy != @like.name
+      if @game.save
+        flash[:success] = '試合を登録しました。'
+        redirect_to @game
+      else
+        flash.now[:danger] = '試合の登録に失敗しました。'
+        render :new
+      end
     else
-      flash.now[:danger] = '試合の登録に失敗しました。'
+      flash.now[:danger] = '対戦相手がお気に入りチームと同一です。'
       render :new
     end
   end
