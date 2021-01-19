@@ -13,7 +13,7 @@ class GamesController < ApplicationController
 
   def create
     @game = current_user.games.build(game_params)
-    @like = current_user.likes.first
+    @like = current_user.likes
     if @game.enemy != @like.name
       if @game.save
         flash[:success] = '試合を登録しました。'
@@ -34,10 +34,10 @@ class GamesController < ApplicationController
   
   def update
     @game = Game.find(params[:id])
-    @like = current_user.likes.first
+    @like = current_user.likes
     if game_params[:enemy] != @like.name
       if @game.update(game_params)
-        flash[:success] = 'ユーザー情報は正常に更新されました'
+        flash[:success] = '情報は正常に更新されました'
         redirect_to @game
       else
         flash[:danger] = '試合情報は正常に更新されませんでした'
@@ -64,7 +64,7 @@ class GamesController < ApplicationController
   def correct_user
     @game = current_user.games.find_by(id: params[:id])
     unless @game
-      redirect_to root_url
+      redirect_to current_user
     end
   end
 end

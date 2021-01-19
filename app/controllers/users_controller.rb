@@ -31,9 +31,9 @@ class UsersController < ApplicationController
     ActiveRecord::Base.transaction do
       @user = User.new(user_params)
       @user.save
-      flash[:success] = 'ユーザを登録しました。'
       team = Team.find(params[:favorite][:team_id])
       @user.favorite(team)
+      flash[:success] = 'ユーザを登録しました。'
       redirect_to @user
     end
     rescue
@@ -49,12 +49,12 @@ class UsersController < ApplicationController
     ActiveRecord::Base.transaction do
         @user = User.find(params[:id])
         @user.update!(user_params)
-        flash[:success] = 'ユーザー情報は正常に更新されました'
         team = Team.find(params[:favorite][:team_id])
         @user.favchange(team)
+        flash[:success] = 'ユーザー情報は正常に更新されました'
         redirect_to @user
-      end
-      rescue
+    end
+  rescue
         flash.now[:danger] = 'ユーザー情報は更新されませんでした'
         render :edit
   end
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   def correct_user
     user = User.find(params[:id])
     if current_user != user
-      redirect_to root_url
+      redirect_to current_user
     end
   end
 end

@@ -3,6 +3,32 @@
     <div class="text-center">
       <h1>Baseball log</h1>
       <p>このアプリは、あなたの試合観戦を記録し、<br>他のファンと喜びを共有できるアプリです。</p>
-      <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-lg btn-primary' %>
+      <% if logged_in? %>
+      <div class= "row">
+        <div class="card col-sm-4">
+          <div class="card-body">
+            <h5 class="card-title">試合を記録する</h5>
+            <p class="card-text">あなたの観戦した熱い試合を、現地での興奮とともに記録に残しましょう。まずは思い出に残ったあの試合から！</p>
+            <a href="<%= new_game_path %>" class="btn btn-primary">試合登録へ</a>
+          </div>
+        </div>
+        <div class="card col-sm-4">
+          <div class="card-body">
+            <h5 class="card-title">振り返り</h5>
+            <p class="card-text">観戦した試合を振り返り、思い出に浸りましょう。あなたの勝ち運・負け運も合わせてチェック！</p>
+            <a href="<%= user_path(current_user) %>" class="btn btn-primary">マイページへ</a>
+          </div>
+        </div>
+        <div class="card col-sm-4">
+          <div class="card-body">
+            <h5 class="card-title">他のユーザーをチェック</h5>
+            <p class="card-text">仲間を見つけたり、ライバルチームのファンの試合感想を覗かせてもらいましょう。きっと新しい発見があります。</p>
+            <a href="<%= users_path %>" class="btn btn-primary">ユーザー一覧へ</a>
+          </div>
+        </div>
+      </div>
+      <% else %>
+        <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-lg btn-primary' %>
+      <% end %>
     </div>
   </div>
