@@ -1,4 +1,5 @@
 class Game < ApplicationRecord
+  
   belongs_to :user
   
   validates :date, presence: true
@@ -9,6 +10,7 @@ class Game < ApplicationRecord
   validates :content, presence: true, length: { maximum: 1000 }
   
   validate :pretend_future
+  
 
 def pretend_future
   if date.present?
@@ -16,7 +18,4 @@ def pretend_future
   end
 end
 
-
-  
-  
 end

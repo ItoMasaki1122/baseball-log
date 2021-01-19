@@ -1,0 +1,50 @@
+<div class="text-center">
+  <h1>試合編集</h1>
+</div>
+
+<div class="row pb-2">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @game, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :date, '日付' %>
+        <%= f.date_field :date, class: 'form-control' %>
+      </div>
+      
+  
+      
+      <div class="form-group">
+        <%= f.label :place, '球場' %>
+        <%= f.text_field :place, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :enemy, '対戦相手' %>
+        <%= f.collection_select :enemy, Team.all, :name, :name, {} ,{:class => "form-control"} %>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :enemy, '結果' %>
+        <label><%= f.radio_button :result, "勝ち" %> 勝ち </label>
+        <label><%= f.radio_button :result, "負け" %> 負け</label>
+        <label><%= f.radio_button :result, "引き分け" %> 引き分け </label>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :topic, '一言メモ' %>
+        <%= f.text_field :topic, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :content, '感想' %>
+        <%= f.text_area :content, class: 'form-control', rows: 5 %>
+      </div>
+      
+
+      <%= f.submit '更新', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

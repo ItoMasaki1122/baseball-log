@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [ :destroy]
+  before_action :correct_user, only: [ :edit, :destroy]
   
   def show
     @game = Game.find(params[:id])
@@ -25,6 +25,27 @@ class GamesController < ApplicationController
     else
       flash.now[:danger] = '対戦相手がお気に入りチームと同一です。'
       render :new
+    end
+  end
+  
+  def edit
+    @game = Game.find(params[:id])
+  end
+  
+  def update
+    @game = Game.find(params[:id])
+    @like = current_user.likes.first
+    if game_params[:enemy] != @like.name
+      if @game.update(game_params)
+        flash[:success] = 'ユーザー情報は正常に更新されました'
+        redirect_to @game
+      else
+        flash[:danger] = '試合情報は正常に更新されませんでした'
+        render :edit
+      end
+    else
+      flash.now[:danger] = '対戦相手がお気に入りチームと同一です。'
+      render :edit
     end
   end
 
