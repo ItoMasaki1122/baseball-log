@@ -7,4 +7,14 @@ class Game < ApplicationRecord
   validates :result, presence: true, length: { maximum: 10 }
   validates :topic, presence: true, length: { maximum: 40 }
   validates :content, presence: true, length: { maximum: 1000 }
+  
+  validate :pretend_future
+
+def pretend_future
+  if date.present?
+    errors[:base] <<  "don't input a future date."  if date > Date.today
+  end
+end
+  
+  
 end
