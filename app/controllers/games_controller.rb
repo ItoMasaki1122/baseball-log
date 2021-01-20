@@ -13,7 +13,7 @@ class GamesController < ApplicationController
 
   def create
     @game = current_user.games.build(game_params)
-    @like = current_user.likes
+    @like = current_user.likes.first
     if @game.enemy != @like.name
       if @game.save
         flash[:success] = '試合を登録しました。'
@@ -34,7 +34,7 @@ class GamesController < ApplicationController
   
   def update
     @game = Game.find(params[:id])
-    @like = current_user.likes
+    @like = current_user.likes.first
     if game_params[:enemy] != @like.name
       if @game.update(game_params)
         flash[:success] = '情報は正常に更新されました'
