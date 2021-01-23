@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show, :edit, :search]
-  before_action :correct_user, only: [:edit]
+  before_action :require_user_logged_in, only: [:index, :show, :edit, :search, :delete]
+  before_action :correct_user, only: [:edit, :delete, :destroy_confirm]
   
   
   def index
@@ -57,6 +57,15 @@ class UsersController < ApplicationController
   rescue
         flash.now[:danger] = 'ユーザー情報は更新されませんでした'
         render :edit
+  end
+  
+  def destroy
+    current_user.destroy
+    flash[:success] = '退会しました'
+    redirect_to root_url
+  end
+  
+  def dstroy_confirm
   end
   
   def search

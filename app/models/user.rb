@@ -7,10 +7,10 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   
-  has_many :games
+  has_many :games,dependent: :destroy
   
-  has_many :favorites
-  has_many :likes, through: :favorites, source: :team
+  has_many :favorites, dependent: :destroy
+  has_many :likes, through: :favorites, source: :team, dependent: :destroy
   
   def favorite(one_team)
     self.favorites.find_or_create_by!(team_id: one_team.id)

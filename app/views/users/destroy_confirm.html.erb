@@ -1,0 +1,12 @@
+<div class="text-center">
+  <h1>サービスから退会</h1>
+  <div class= "m-5">
+      <p>退会すると、ユーザー情報や<br>試合記録は削除され、復元できません。</p>
+  </div>
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+　    <%= link_to "退会", current_user , method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
+　    <%= link_to "戻る", root_path , class: 'btn btn-secondary' %>
+  </div>
+</div>
+</div>

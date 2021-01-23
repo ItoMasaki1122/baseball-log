@@ -26,6 +26,9 @@
             <a href="<%= users_path %>" class="btn btn-primary">ユーザー一覧へ</a>
           </div>
         </div>
+        <div class= "mt-3">
+          退会したい方は<%= link_to 'こちら', destroy_confirm_user_path(current_user) %>
+        </div>
       </div>
       <% else %>
         <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-lg btn-primary' %>
