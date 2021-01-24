@@ -1,18 +1,8 @@
 ja:
   activerecord:
     models:
+      user:
       game: 
-    attributes:
-      game:
-        date: 日付 
-        place: 球場
-        result: 結果
-        topic: 一言メモ
-        content: 感想
-        
-  activerecord:
-    models:
-      user: 
     attributes:
       user:
         name: 名前 
@@ -20,4 +10,10 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認用）
+      game:
+        date: 日付 
+        place: 球場
+        result: 結果
+        topic: 一言メモ
+        content: 感想
       
