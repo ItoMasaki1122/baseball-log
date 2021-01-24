@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :games, only: [:show, :new, :edit, :update, :create, :destroy]
+  resources :games, only: [:show, :new, :edit, :update, :create, :destroy] do
+    resources :comments, only: [:new, :create, :destroy]
+  end
   resources :favorites, only: [:new, :create, :update ]
+  
 end

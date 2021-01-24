@@ -8,9 +8,9 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :games,dependent: :destroy
-  
   has_many :favorites, dependent: :destroy
   has_many :likes, through: :favorites, source: :team, dependent: :destroy
+  has_many :comments
   
   def favorite(one_team)
     self.favorites.find_or_create_by!(team_id: one_team.id)

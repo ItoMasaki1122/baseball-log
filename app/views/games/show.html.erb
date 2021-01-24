@@ -4,13 +4,35 @@
 
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
-      
 　    <p>日付：<%= @game.date %></p>
 　    <p>対戦相手：<%= @game.enemy %></p>
 　    <p>球場：<%= @game.place %></p>
 　    <p>結果：<%= @game.result %></p>
 　    <p>一言メモ：<%= @game.topic %></p>
 　    <p>感想：<%= @game.content %></p>
-　    <%= link_to "戻る", user_path(@user) , class: 'btn btn-secondary' %>
+　    <hr>
+      <div class="mt-2">
+        <%= form_with(model: [@game, @comment], local: true) do |f| %>
+          <div class= "form_group">
+            <%= f.text_field :content, class: 'form-control input-sm' %>
+            <%= f.submit 'コメントする', class: 'mt-1 btn btn-primary' %>
+            <%= link_to "戻る", user_path(@user) , class: 'mt-1 btn btn-secondary' %>
+        <% end %>
+          </div>
+      </div>
+      <div class= "text-center">
+　      <h4>他ユーザーのコメント</h4>
+　    </div>
+        <% @comments.each do |c| %>
+          <p><a href="/users/<%= @game.user.id %>"><%= c.user.name %></a>
+          <%= c.content %>
+          <% if current_user == c.user %>
+            <%= link_to "削除", game_comment_path(game_id: @game.id, id: c.id), method: :delete, class: 'btn btn-danger btn-sm' %>
+          </p>
+          <% end %>
+        <% end %>
+        
+　 </div>
+　    
   </div>
 </div>
