@@ -4,12 +4,16 @@
 
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
+      
 　    <p>日付：<%= @game.date %></p>
 　    <p>対戦相手：<%= @game.enemy %></p>
 　    <p>球場：<%= @game.place %></p>
 　    <p>結果：<%= @game.result %></p>
 　    <p>一言メモ：<%= @game.topic %></p>
 　    <p>感想：<%= @game.content %></p>
+　    <p>
+        <%= image_tag @game.image.url, width: "320px" if @game.image? %>
+      </p>
 　    <hr>
       <div class="mt-2">
         <%= form_with(model: [@game, @comment], local: true) do |f| %>

@@ -60,7 +60,7 @@ class GamesController < ApplicationController
    private
 
   def game_params
-    params.require(:game).permit(:date, :place, :enemy, :result, :topic, :content)
+    params.require(:game).permit(:date, :place, :enemy, :result, :topic, :content, :image)
   end
   
   def correct_user

@@ -18,4 +18,6 @@ def pretend_future
   end
 end
 
+mount_uploader :image, ImageUploader
+
 end
